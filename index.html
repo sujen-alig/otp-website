@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart - Mobile Phones Mega Sale</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1757184297/pplx_project_search_images/0006de2a84f679eb7fe44be359f290196b8220cb.png" alt="Flipkart Logo" class="logo-img">
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products, brands and more" class="search-input">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn">Login</button>
+                    <button class="header-btn cart-btn">🛒 Cart</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Product Page -->
+    <main class="main-page page active">
+        <!-- Deal Timer -->
+        <div class="deal-banner">
+            <div class="container">
+                <div class="deal-content">
+                    <h2>🔥 MEGA SMARTPHONE SALE ENDS IN: <span id="countdown-timer" class="countdown-timer">12:00</span> 🔥</h2>
+                    <p class="urgency-text">Limited Time Offer - Stock Running Out! 99% OFF on Premium Phones!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Catalog -->
+        <div class="container">
+            <div class="catalog-header">
+                <h1>Latest 2025 Smartphones - Lowest Price Ever!</h1>
+                <p>Get the latest 5G smartphones at unbelievable prices. Original price ₹50,000+ now only ₹1,199!</p>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Address Page -->
+    <div class="address-page page">
+        <div class="container">
+            <div class="page-header">
+                <button class="back-btn" onclick="navigateToPage('main-page')">← Back</button>
+                <h1>Delivery Address</h1>
+            </div>
+            
+            <div class="address-form-container">
+                <div class="selected-product" id="selected-product-address">
+                    <!-- Selected product details will be populated here -->
+                </div>
+                
+                <form class="address-form" id="address-form">
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Mobile Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{10}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="address">Address *</label>
+                        <textarea id="address" name="address" class="form-control" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="city">City *</label>
+                            <input type="text" id="city" name="city" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="state">State *</label>
+                            <input type="text" id="state" name="state" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="pincode">Pincode *</label>
+                        <input type="text" id="pincode" name="pincode" class="form-control" pattern="[0-9]{6}" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full-width">Continue to Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Page -->
+    <div class="payment-page page">
+        <div class="container">
+            <div class="page-header">
+                <button class="back-btn" onclick="navigateToPage('address-page')">← Back</button>
+                <h1>Payment</h1>
+            </div>
+            
+            <div class="payment-container">
+                <div class="order-summary" id="order-summary">
+                    <!-- Order summary will be populated here -->
+                </div>
+                
+                <div class="payment-methods">
+                    <h3>Secure Payment via Razorpay</h3>
+                    
+                    <div class="payment-option selected">
+                        <div class="payment-option-header">
+                            <input type="radio" id="razorpay" name="payment" value="razorpay" checked>
+                            <label for="razorpay">
+                                <strong>Razorpay Secure Checkout</strong>
+                                <span class="payment-desc">Pay with Credit/Debit Card, UPI, Net Banking, Wallet</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-actions">
+                        <div class="total-amount">
+                            <span>Total Amount: <strong>₹1,199</strong></span>
+                            <div class="payment-security">
+                                <small>🔒 100% Secure Payment | Real Money Transaction</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-full-width" id="pay-now-btn">Pay ₹1,199 Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Page -->
+    <div class="confirmation-page page">
+        <div class="container">
+            <div class="confirmation-container">
+                <div class="success-icon">✅</div>
+                <h1>Order Confirmed!</h1>
+                <p>Thank you for your purchase. Your payment has been successfully processed.</p>
+                
+                <div class="payment-success-info" id="payment-success-info">
+                    <!-- Payment success details will be populated here -->
+                </div>
+                
+                <div class="order-details" id="order-details">
+                    <!-- Order details will be populated here -->
+                </div>
+                
+                <div class="delivery-info">
+                    <h3>Delivery Information</h3>
+                    <div class="delivery-date" id="delivery-date">
+                        <!-- Delivery date will be populated here -->
+                    </div>
+                    <div class="tracking-info">
+                        <strong>Order ID:</strong> <span id="order-id"></span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="navigateToPage('main-page')">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Processing your payment...</p>
+        <small>Please wait while we securely process your transaction</small>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
